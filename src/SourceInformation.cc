@@ -34,6 +34,12 @@ namespace SBF {
   std::string source_url = "forums.spacebattles.com";
 } // namespace SBF
 
+namespace YT {
+  std::string name = "YouTube";
+  std::string short_name = "YT";
+  std::string source_url = "youtube.com";
+} // namespace YT
+
 } // namespace parsers
 } // namespace core
 } // namespace black_library

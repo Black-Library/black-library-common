@@ -37,6 +37,12 @@ namespace SBF {
     extern std::string source_url;
 } // namespace SBF
 
+namespace YT {
+    extern std::string name;
+    extern std::string short_name;
+    extern std::string source_url;
+} // namespace YT
+
 } // namespace parsers
 } // namespace core
 } // namespace black_library
