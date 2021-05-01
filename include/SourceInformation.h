@@ -43,7 +43,7 @@ namespace YT {
     extern std::string source_url;
 } // namespace YT
 
-} // namespace parsers
+} // namespace common
 } // namespace core
 } // namespace black_library
 

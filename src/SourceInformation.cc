@@ -40,6 +40,6 @@ namespace YT {
   std::string source_url = "youtube.com";
 } // namespace YT
 
-} // namespace parsers
+} // namespace common
 } // namespace core
 } // namespace black_library
