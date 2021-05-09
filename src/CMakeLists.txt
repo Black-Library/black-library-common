@@ -6,6 +6,7 @@ add_library(blacklibrarycommon
     )
 
 target_include_directories(blacklibrarycommon PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(blacklibrarycommon stdc++fs)
 
 install(
   TARGETS blacklibrarycommon
