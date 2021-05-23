@@ -31,6 +31,12 @@ bool CheckFilePermission(const std::string &target_path)
     return false;
 }
 
+// wrapper for std::filesystem::exists
+bool Exists(const std::string &target_path)
+{
+    return fs::exists(target_path);
+}
+
 // wrapper for std::filesystem::create_directories
 bool MakeDirectories(const std::string &target_path)
 {
