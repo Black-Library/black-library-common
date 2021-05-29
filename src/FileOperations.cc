@@ -14,6 +14,8 @@
 
 #include <unistd.h>
 
+#include <regex>
+
 #include <FileOperations.h>
 
 namespace black_library {
@@ -35,6 +37,28 @@ bool CheckFilePermission(const std::string &target_path)
 bool Exists(const std::string &target_path)
 {
     return fs::exists(target_path);
+}
+
+// wrapper for std::filesystem list directorty contents
+std::vector<std::string> GetFileList(const std::string &target_path)
+{
+    std::vector<std::string> file_list;
+    const std::regex regex("CH*");
+
+    if (!Exists(target_path))
+        return file_list;
+
+    for (const auto & entry : fs::directory_iterator(target_path))
+    {
+        const auto file_name = entry.path().filename().string();
+
+        if (std::regex_search(file_name, regex))
+        {
+            file_list.emplace_back(file_name);
+        }
+    }
+
+    return file_list;
 }
 
 // wrapper for std::filesystem::create_directories
