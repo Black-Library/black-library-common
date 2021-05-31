@@ -46,13 +46,17 @@ size_t GetBindIndex(const std::string &file_name)
     if (file_name.empty())
         return 0;
 
-    auto first_pos = file_name.find_first_of("0123456789");
-    auto second_pos = file_name.find_first_of('_');
+    auto first_pos = file_name.find_last_of("_");
+    auto second_pos = file_name.find_last_of('.');
 
     if (first_pos == std::string::npos || second_pos == std::string::npos)
         return 0;
 
-    auto temp_string = file_name.substr(first_pos, second_pos);
+    auto temp_string = file_name.substr(first_pos, second_pos - first_pos);
+
+    first_pos = temp_string.find_last_not_of("0123456789");
+
+    temp_string = temp_string.substr(first_pos + 1, temp_string.size());
 
     return std::stoull(temp_string);
 }
