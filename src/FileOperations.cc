@@ -14,7 +14,9 @@
 
 #include <unistd.h>
 
+#include <iostream>
 #include <regex>
+#include <string>
 
 #include <FileOperations.h>
 
@@ -39,23 +41,67 @@ bool Exists(const std::string &target_path)
     return fs::exists(target_path);
 }
 
-// wrapper for std::filesystem list directorty contents
+size_t GetBindIndex(const std::string &file_name)
+{
+    if (file_name.empty())
+        return 0;
+
+    auto first_pos = file_name.find_first_of("0123456789");
+    auto second_pos = file_name.find_first_of('_');
+
+    if (first_pos == std::string::npos || second_pos == std::string::npos)
+        return 0;
+
+    auto temp_string = file_name.substr(first_pos, second_pos);
+
+    return std::stoull(temp_string);
+}
+
+size_t GetChapterIndex(const std::string &file_name)
+{
+    if (file_name.empty())
+        return 0;
+
+    auto first_pos = file_name.find_first_of("0123456789");
+    auto second_pos = file_name.find_first_of('_');
+
+    if (first_pos == std::string::npos || second_pos == std::string::npos)
+        return 0;
+
+    auto temp_string = file_name.substr(first_pos, second_pos);
+
+    return std::stoull(temp_string);
+}
+
 std::vector<std::string> GetFileList(const std::string &target_path)
 {
+    return GetFileList(target_path, "*");
+}
+
+// wrapper for std::filesystem list directorty contents
+std::vector<std::string> GetFileList(const std::string &target_path, const std::string &regex_string)
+{
     std::vector<std::string> file_list;
-    const std::regex regex("CH*");
 
     if (!Exists(target_path))
         return file_list;
 
-    for (const auto & entry : fs::directory_iterator(target_path))
+    try
     {
-        const auto file_name = entry.path().filename().string();
-
-        if (std::regex_search(file_name, regex))
+        const std::regex regex(regex_string, std::regex::extended); // POSIX
+        for (const auto & entry : fs::directory_iterator(target_path))
         {
-            file_list.emplace_back(file_name);
+            const auto file_name = entry.path().filename().string();
+
+            if (std::regex_search(file_name, regex))
+            {
+                file_list.emplace_back(file_name);
+            }
         }
+    }
+    catch (std::regex_error &e)
+    {
+        std::cout << "Error: regex failed" << std::endl;
     }
 
     return file_list;
