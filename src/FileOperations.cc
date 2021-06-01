@@ -41,6 +41,11 @@ bool Exists(const std::string &target_path)
     return fs::exists(target_path);
 }
 
+bool ExistsAndPermission(const std::string &target_path)
+{
+    return Exists(target_path) && CheckFilePermission(target_path);
+}
+
 size_t GetBindIndex(const std::string &file_name)
 {
     if (file_name.empty())

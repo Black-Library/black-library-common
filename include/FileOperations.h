@@ -16,6 +16,7 @@ namespace common {
 
 bool CheckFilePermission(const std::string &target_path);
 bool Exists(const std::string &target_path);
+bool ExistsAndPermission(const std::string &target_path);
 size_t GetBindIndex(const std::string &file_name);
 size_t GetChapterIndex(const std::string &file_name);
 std::vector<std::string> GetFileList(const std::string &target_path);
