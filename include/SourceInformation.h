@@ -13,34 +13,46 @@ namespace core {
 
 namespace common {
 
+namespace ERROR {
+    static constexpr char full_name[] = "Full Name Error";
+    static constexpr char short_name[] = "ERROR";
+    static constexpr char source_name[] = "source-name-error";
+    static constexpr char source_url[] = "error-source-url";
+} // namespace AO3
+
 namespace AO3 {
-    extern std::string name;
-    extern std::string short_name;
-    extern std::string source_url;
+    static constexpr char full_name[] = "Archive Of Our Own";
+    static constexpr char short_name[] = "AO3";
+    static constexpr char source_name[] = "archive-of-our-own";
+    static constexpr char source_url[] = "archiveofourown.org";
 } // namespace AO3
 
 namespace FFN {
-    extern std::string name;
-    extern std::string short_name;
-    extern std::string source_url;
+    static constexpr char name[] = "FanFiction";
+    static constexpr char short_name[] = "FFN";
+    static constexpr char source_name[] = "fanfiction";
+    static constexpr char source_url[] = "fanfiction.net";
 } // namespace FFN
 
 namespace RR {
-    extern std::string name;
-    extern std::string short_name;
-    extern std::string source_url;
+    static constexpr char name[] = "Royal Road";
+    static constexpr char short_name[] = "RR";
+    static constexpr char source_name[] = "royal-road";
+    static constexpr char source_url[] = "royalroad.com";
 } // namespace RR
 
 namespace SBF {
-    extern std::string name;
-    extern std::string short_name;
-    extern std::string source_url;
+    static constexpr char name[] = "SpaceBattles Forums";
+    static constexpr char short_name[] = "SBF";
+    static constexpr char source_name[] = "spacebattles-forums";
+    static constexpr char source_url[] = "forums.spacebattles.com";
 } // namespace SBF
 
 namespace YT {
-    extern std::string name;
-    extern std::string short_name;
-    extern std::string source_url;
+    static constexpr char name[] = "YouTube";
+    static constexpr char short_name[] = "YT";
+    static constexpr char source_name[] = "youtube";
+    static constexpr char source_url[] = "youtube.com";
 } // namespace YT
 
 } // namespace common
