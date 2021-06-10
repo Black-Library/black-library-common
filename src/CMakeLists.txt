@@ -3,6 +3,7 @@ include(GNUInstallDirs)
 add_library(blacklibrarycommon
     FileOperations.cc
     SourceInformation.cc
+    TimeOperations.cc
     )
 
 target_include_directories(blacklibrarycommon PUBLIC ${PROJECT_SOURCE_DIR}/include)
