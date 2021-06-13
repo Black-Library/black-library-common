@@ -55,6 +55,8 @@ namespace YT {
     static constexpr char source_url[] = "youtube.com";
 } // namespace YT
 
+bool SourceInformationMember(const std::string &url);
+
 } // namespace common
 } // namespace core
 } // namespace black_library

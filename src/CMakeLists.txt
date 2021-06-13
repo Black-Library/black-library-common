@@ -3,6 +3,7 @@ include(GNUInstallDirs)
 add_library(blacklibrarycommon
     FileOperations.cc
     SourceInformation.cc
+    StringOperations.cc
     TimeOperations.cc
     )
 

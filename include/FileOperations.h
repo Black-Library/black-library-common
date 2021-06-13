@@ -22,6 +22,7 @@ size_t GetChapterIndex(const std::string &file_name);
 std::vector<std::string> GetFileList(const std::string &target_path);
 std::vector<std::string> GetFileList(const std::string &target_path, const std::string &regex_string);
 bool MakeDirectories(const std::string &target_path);
+std::string SanitizeFileName(const std::string &file_name);
 
 } // namespace common
 } // namespace core
