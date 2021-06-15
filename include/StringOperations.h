@@ -14,6 +14,7 @@ namespace core {
 namespace common {
 
 bool ContainsString(const std::string &haystack, const std::string &needle);
+void SanatizeString(std::string &target_string);
 std::string TrimWhitespace(const std::string &target_string);
 
 } // namespace common
