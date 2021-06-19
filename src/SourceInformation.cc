@@ -30,6 +30,10 @@ bool SourceInformationMember(const std::string &url)
     {
         is_member = true;
     }
+    else if (ContainsString(url, SVF::source_url))
+    {
+        is_member = true;
+    }
     else if (ContainsString(url, RR::source_url))
     {
         is_member = true;

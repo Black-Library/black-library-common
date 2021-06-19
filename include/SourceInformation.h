@@ -48,6 +48,13 @@ namespace SBF {
     static constexpr char source_url[] = "forums.spacebattles.com";
 } // namespace SBF
 
+namespace SVF {
+    static constexpr char name[] = "Sufficient Velocity Forums";
+    static constexpr char short_name[] = "SVF";
+    static constexpr char source_name[] = "sufficient-velocity-forums";
+    static constexpr char source_url[] = "forums.sufficientvelocity.com";
+} // namespace SBF
+
 namespace YT {
     static constexpr char name[] = "YouTube";
     static constexpr char short_name[] = "YT";
