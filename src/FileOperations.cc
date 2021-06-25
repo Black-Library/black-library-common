@@ -130,7 +130,7 @@ bool MakeDirectories(const std::string &target_path)
 std::string SanitizeFileName(const std::string &file_name)
 {
     std::string sanatized_file_name = file_name;
-    std::string unallowed = " /\\*?<>:;=[]!@|";
+    const std::string unallowed = " /\\*?<>:;=[]!@|";
 
     if (sanatized_file_name.front() == '-')
     {
@@ -143,6 +143,24 @@ std::string SanitizeFileName(const std::string &file_name)
         return (std::find(unallowed.begin(), unallowed.end(), ch) != unallowed.end()) ? '-' : ch;
     });
 
+    return sanatized_file_name;
+}
+
+std::string SanitizeFilePath(const std::string &file_name)
+{
+    std::string sanatized_file_name = file_name;
+    const std::string unallowed = " *?<>:;=[]!@|";
+
+    if (sanatized_file_name.front() == '-')
+    {
+        sanatized_file_name.erase(sanatized_file_name.begin());
+    }
+
+    std::transform(sanatized_file_name.begin(), sanatized_file_name.end(), sanatized_file_name.begin(),
+    [&unallowed](char ch)
+    {
+        return (std::find(unallowed.begin(), unallowed.end(), ch) != unallowed.end()) ? '-' : ch;
+    });
 
     return sanatized_file_name;
 }

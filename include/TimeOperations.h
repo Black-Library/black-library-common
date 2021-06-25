@@ -14,7 +14,8 @@ namespace core {
 
 namespace common {
 
-std::string GetISOString(const time_t &time);
+std::string GetGUITimeString(const time_t &time);
+std::string GetISOTimeString(const time_t &time);
 std::time_t GetUnixTime();
 std::time_t ParseTimet(const std::string &input, const std::string &format);
 

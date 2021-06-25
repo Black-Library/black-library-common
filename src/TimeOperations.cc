@@ -13,7 +13,14 @@ namespace core {
 
 namespace common {
 
-std::string GetISOString(const time_t &time)
+std::string GetGUITimeString(const time_t &time)
+{
+    std::stringstream str;
+    str << std::put_time(std::gmtime(&time), "%F %H:%M") << std::ends;
+    return str.str();
+}
+
+std::string GetISOTimeString(const time_t &time)
 {
     std::stringstream str;
     str << std::put_time(std::gmtime(&time), "%FT%TZ") << std::ends;
