@@ -66,7 +66,7 @@ size_t GetBindIndex(const std::string &file_name)
     return std::stoull(temp_string);
 }
 
-size_t GetChapterIndex(const std::string &file_name)
+size_t GetSectionIndex(const std::string &file_name)
 {
     if (file_name.empty())
         return 0;
