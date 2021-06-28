@@ -38,6 +38,10 @@ bool SourceInformationMember(const std::string &url)
     {
         is_member = true;
     }
+    else if (ContainsString(url, YT::source_url))
+    {
+        is_member = true;
+    }
 
     return is_member;
 }
