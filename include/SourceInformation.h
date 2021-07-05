@@ -7,6 +7,8 @@
 
 #include <string>
 
+#include <StringOperations.h>
+
 namespace black_library {
 
 namespace core {
@@ -62,7 +64,40 @@ namespace YT {
     static constexpr char source_url[] = "youtube.com";
 } // namespace YT
 
-bool SourceInformationMember(const std::string &url);
+struct SourceInformationMember : std::unary_function<const std::string, bool>
+{
+    bool operator()(const std::string &url) const
+    {
+        bool is_member = false;
+
+        if (ContainsString(url, AO3::source_url))
+        {
+            is_member = true;
+        }
+        else if (ContainsString(url, FFN::source_url))
+        {
+            is_member = true;
+        }
+        else if (ContainsString(url, SBF::source_url))
+        {
+            is_member = true;
+        }
+        else if (ContainsString(url, SVF::source_url))
+        {
+            is_member = true;
+        }
+        else if (ContainsString(url, RR::source_url))
+        {
+            is_member = true;
+        }
+        else if (ContainsString(url, YT::source_url))
+        {
+            is_member = true;
+        }
+
+        return is_member;
+    }
+};
 
 } // namespace common
 } // namespace core
