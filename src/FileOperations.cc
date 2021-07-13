@@ -36,14 +36,14 @@ bool CheckFilePermission(const std::string &target_path)
 }
 
 // wrapper for std::filesystem::exists
-bool Exists(const std::string &target_path)
+bool FileExists(const std::string &target_path)
 {
     return fs::exists(target_path);
 }
 
-bool ExistsAndPermission(const std::string &target_path)
+bool FileExistsAndPermission(const std::string &target_path)
 {
-    return Exists(target_path) && CheckFilePermission(target_path);
+    return FileExists(target_path) && CheckFilePermission(target_path);
 }
 
 size_t GetBindIndex(const std::string &file_name)
@@ -92,7 +92,7 @@ std::vector<std::string> GetFileList(const std::string &target_path, const std::
 {
     std::vector<std::string> file_list;
 
-    if (!Exists(target_path))
+    if (!FileExists(target_path))
         return file_list;
 
     try
