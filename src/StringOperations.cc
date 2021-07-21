@@ -44,6 +44,14 @@ void SanatizeString(std::string &target_string)
         , target_string.end());
 }
 
+std::string SubstringAfterString(const std::string &base_string, const std::string &substring_string)
+{
+    const auto pos = base_string.find(substring_string);
+    if (pos == base_string.npos)
+        return base_string;
+    return base_string.substr(pos + substring_string.size());
+}
+
 std::string TrimWhitespace(const std::string &target_string)
 {
     auto leading_pos = target_string.find_first_not_of(" \t\r\n\0");
