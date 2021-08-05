@@ -130,7 +130,7 @@ bool MakeDirectories(const std::string &target_path)
 std::string SanitizeFileName(const std::string &file_name)
 {
     std::string sanatized_file_name = file_name;
-    const std::string unallowed = " /\\*?<>:;=[]!@|.";
+    const std::string unallowed = " /\\*?<>:;=[]!@|.,%#";
 
     while (sanatized_file_name.front() == '-')
     {
