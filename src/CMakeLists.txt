@@ -2,13 +2,14 @@ include(GNUInstallDirs)
 
 add_library(blacklibrarycommon
     FileOperations.cc
+    LogOperations.cc
     SourceInformation.cc
     StringOperations.cc
     TimeOperations.cc
     )
 
 target_include_directories(blacklibrarycommon PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_link_libraries(blacklibrarycommon stdc++fs)
+target_link_libraries(blacklibrarycommon stdc++fs spdlog::spdlog)
 
 install(
   TARGETS blacklibrarycommon
