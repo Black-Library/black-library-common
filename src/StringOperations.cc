@@ -35,6 +35,13 @@ void SanatizeString(std::string &target_string)
     target_string.erase(std::remove(target_string.begin(), target_string.end(), '\0'), target_string.end());
     target_string.erase(std::remove(target_string.begin(), target_string.end(), ';'), target_string.end());
 
+    // remove unallowed strings
+    const std::string remove_str = "’";
+    const auto pos = target_string.find(remove_str);
+
+    if (pos != std::string::npos)
+        target_string.erase(pos, remove_str.length());
+
     // remove unprintable characters
     target_string.erase(std::remove_if(target_string.begin(), target_string.end(),
         [](unsigned char c)
