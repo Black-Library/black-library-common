@@ -51,6 +51,17 @@ void SanatizeString(std::string &target_string)
         , target_string.end());
 }
 
+// C++ wrapper around strncmp
+bool StartsWithString(const std::string &haystack, const std::string &needle)
+{
+    if (strncmp(haystack.c_str(), needle.c_str(), strlen(needle.c_str())))
+    {
+        return false;
+    }
+
+    return true;
+}
+
 std::string SubstringAfterString(const std::string &base_string, const std::string &substring_string)
 {
     const auto pos = base_string.find(substring_string);

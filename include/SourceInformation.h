@@ -33,14 +33,14 @@ namespace FFN {
     static constexpr char name[] = "FanFiction";
     static constexpr char short_name[] = "FFN";
     static constexpr char source_name[] = "fanfiction";
-    static constexpr char source_url[] = "fanfiction.net";
+    static constexpr char source_url[] = "www.fanfiction.net";
 } // namespace FFN
 
 namespace RR {
     static constexpr char name[] = "Royal Road";
     static constexpr char short_name[] = "RR";
     static constexpr char source_name[] = "royal-road";
-    static constexpr char source_url[] = "royalroad.com";
+    static constexpr char source_url[] = "www.royalroad.com";
 } // namespace RR
 
 namespace SBF {
@@ -64,33 +64,42 @@ namespace YT {
     static constexpr char source_url[] = "youtube.com";
 } // namespace YT
 
+namespace {
+
+std::string GenerateUrlFromSourceUrl(const char *source_url)
+{
+    return std::string("https://") + source_url;
+}
+
+}
+
 struct SourceInformationMember : std::unary_function<const std::string, bool>
 {
     bool operator()(const std::string &url) const
     {
         bool is_member = false;
 
-        if (ContainsString(url, AO3::source_url))
+        if (StartsWithString(url, GenerateUrlFromSourceUrl(AO3::source_url)))
         {
             is_member = true;
         }
-        else if (ContainsString(url, FFN::source_url))
+        else if (StartsWithString(url, GenerateUrlFromSourceUrl(FFN::source_url)))
         {
             is_member = true;
         }
-        else if (ContainsString(url, SBF::source_url))
+        else if (StartsWithString(url, GenerateUrlFromSourceUrl(SBF::source_url)))
         {
             is_member = true;
         }
-        else if (ContainsString(url, SVF::source_url))
+        else if (StartsWithString(url, GenerateUrlFromSourceUrl(SVF::source_url)))
         {
             is_member = true;
         }
-        else if (ContainsString(url, RR::source_url))
+        else if (StartsWithString(url, GenerateUrlFromSourceUrl(RR::source_url)))
         {
             is_member = true;
         }
-        else if (ContainsString(url, YT::source_url))
+        else if (StartsWithString(url, GenerateUrlFromSourceUrl(YT::source_url)))
         {
             is_member = true;
         }
