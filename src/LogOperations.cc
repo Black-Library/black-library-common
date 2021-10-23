@@ -18,7 +18,7 @@ namespace core {
 
 namespace common {
 
-int InitRotatingLogger(const std::string &logger_name, const std::string &log_path)
+int InitRotatingLogger(const std::string &logger_name, const std::string &log_path, bool debug_mode)
 {
     auto log_dir = log_path;
     try
@@ -43,7 +43,10 @@ int InitRotatingLogger(const std::string &logger_name, const std::string &log_pa
         const auto complete_log_path = log_dir + "/" + logger_name + ".txt";
 
         auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-        console_sink->set_level(spdlog::level::info);
+        if (debug_mode)
+            console_sink->set_level(spdlog::level::debug);
+        else
+            console_sink->set_level(spdlog::level::info);
 
         auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(complete_log_path, MAX_LOG_SIZE, MAX_LOG_FILES);
         file_sink->set_level(spdlog::level::debug);
@@ -52,7 +55,7 @@ int InitRotatingLogger(const std::string &logger_name, const std::string &log_pa
         logger.set_level(spdlog::level::debug);
         spdlog::register_logger(std::make_shared<spdlog::logger>(logger));
 
-        logger.info("Start log with name {} at {}", logger_name, complete_log_path);
+        logger.info("Start log with name {} at {} with debug_mode: {}", logger_name, complete_log_path, debug_mode);
     }
     catch(const spdlog::spdlog_ex &ex)
     {

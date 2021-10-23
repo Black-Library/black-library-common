@@ -18,7 +18,7 @@ namespace common {
 #define MAX_LOG_SIZE 1048576
 #define MAX_LOG_FILES 3
 
-int InitRotatingLogger(const std::string &logger_name, const std::string &log_path);
+int InitRotatingLogger(const std::string &logger_name, const std::string &log_path, bool debug_mode);
 
 template<typename ... Args>
 inline void LogTrace(const std::string &logger_name, const std::string &format, Args &&...args)
