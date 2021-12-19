@@ -53,6 +53,7 @@ int InitRotatingLogger(const std::string &logger_name, const std::string &log_pa
 
         spdlog::logger logger(logger_name, {console_sink, file_sink});
         logger.set_level(spdlog::level::debug);
+        logger.flush_on(spdlog::level::warn);
         spdlog::register_logger(std::make_shared<spdlog::logger>(logger));
 
         logger.info("Start log with name {} at {} with debug_mode: {}", logger_name, complete_log_path, debug_mode);
