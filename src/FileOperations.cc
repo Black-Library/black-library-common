@@ -14,11 +14,15 @@
 
 #include <unistd.h>
 
+#include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <regex>
 #include <string>
 
 #include <FileOperations.h>
+
+#include <openssl/md5.h>
 
 namespace black_library {
 
@@ -64,6 +68,37 @@ size_t GetBindIndex(const std::string &file_name)
     temp_string = temp_string.substr(first_pos + 1, temp_string.size());
 
     return std::stoull(temp_string);
+}
+
+std::string GetMD5Hash(const std::string &target_path)
+{
+    if (target_path.empty())
+        return "";
+
+    if (!FileExists(target_path))
+        return "";
+
+    std::string file_contents;
+    std::ostringstream oss;
+    unsigned char result[MD5_DIGEST_LENGTH];
+
+    std::ifstream input_file(target_path, std::ios::in | std::ios::binary);
+
+    if (!input_file)
+        return "";
+
+    input_file.seekg(0, std::ios::end);
+    file_contents.resize(input_file.tellg());
+    input_file.seekg(0, std::ios::beg);
+    input_file.read(&file_contents[0], file_contents.size());
+    input_file.close();
+
+    MD5((unsigned char*)file_contents.c_str(), file_contents.size(), result);
+
+    oss << std::hex << std::setfill('0');
+    for (auto c : result) oss << std::setw(2) << (int)c;
+
+    return oss.str();
 }
 
 size_t GetSectionIndex(const std::string &file_name)
