@@ -18,6 +18,9 @@ namespace common {
 #define MAX_LOG_SIZE 1048576
 #define MAX_LOG_FILES 3
 
+static constexpr const char DefaultLogPath[] = "/mnt/black-library/log/";
+static const bool DefaultLogLevel = false;
+
 int InitRotatingLogger(const std::string &logger_name, const std::string &log_path, bool debug_mode);
 
 template<typename ... Args>

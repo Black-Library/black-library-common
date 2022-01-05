@@ -14,6 +14,8 @@ namespace core {
 
 namespace common {
 
+static constexpr const char DefaultStoragePath[] = "/mnt/black-library/store/";
+
 bool CheckFilePermission(const std::string &target_path);
 bool FileExists(const std::string &target_path);
 bool FileExistsAndPermission(const std::string &target_path);
