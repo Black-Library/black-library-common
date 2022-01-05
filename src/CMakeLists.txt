@@ -4,6 +4,7 @@ set(OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL REQUIRED)
 
 add_library(blacklibrarycommon
+    ConfigOperations.cc
     FileOperations.cc
     LogOperations.cc
     SourceInformation.cc
@@ -12,7 +13,7 @@ add_library(blacklibrarycommon
     )
 
 target_include_directories(blacklibrarycommon PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_link_libraries(blacklibrarycommon OpenSSL::SSL stdc++fs spdlog::spdlog)
+target_link_libraries(blacklibrarycommon nlohmann_json::nlohmann_json OpenSSL::SSL stdc++fs spdlog::spdlog)
 
 install(
   TARGETS blacklibrarycommon
