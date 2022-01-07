@@ -14,7 +14,7 @@ namespace core {
 
 namespace common {
 
-static constexpr const char DefaultStoragePath[] = "/mnt/black-library/store/";
+static constexpr const char DefaultStoragePath[] = "/mnt/black-library/store";
 
 bool CheckFilePermission(const std::string &target_path);
 bool FileExists(const std::string &target_path);
@@ -24,6 +24,7 @@ size_t GetSectionIndex(const std::string &file_name);
 std::vector<std::string> GetFileList(const std::string &target_path);
 std::vector<std::string> GetFileList(const std::string &target_path, const std::string &regex_string);
 bool MakeDirectories(const std::string &target_path);
+bool RemoveFile(const std::string &target_path);
 std::string SanitizeFileName(const std::string &file_name);
 std::string SanitizeFilePath(const std::string &file_name);
 

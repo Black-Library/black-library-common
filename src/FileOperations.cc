@@ -162,6 +162,12 @@ bool MakeDirectories(const std::string &target_path)
     return fs::create_directories(target_path);
 }
 
+// wrapper for std::filesystem::remove
+bool RemoveFile(const std::string &target_path)
+{
+    return fs::remove(target_path);
+}
+
 std::string SanitizeFileName(const std::string &file_name)
 {
     std::string sanatized_file_name = file_name;
