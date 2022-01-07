@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include <algorithm>
-#include <iostream>
 
 #include <LogOperations.h>
 
@@ -26,13 +25,13 @@ int InitRotatingLogger(const std::string &logger_name, const std::string &log_pa
         auto logger_check = spdlog::get(logger_name);
         if (logger_check)
         {
-            logger_check->debug("Init {} already active", logger_name);
+            logger_check->debug("Init logger {} already active", logger_name);
             return 0;
         }
 
         if (log_dir.empty())
         {
-            log_dir = "/mnt/black-library/log";
+            log_dir = DefaultLogPath;
             std::cout << "Empty log dir given, using default: " << log_dir << std::endl;
         }
 
