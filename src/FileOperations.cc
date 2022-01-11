@@ -39,43 +39,12 @@ bool CheckFilePermission(const std::string &target_path)
     return false;
 }
 
-// wrapper for std::filesystem::exists
-bool FileExists(const std::string &target_path)
-{
-    return fs::exists(target_path);
-}
-
-bool FileExistsAndPermission(const std::string &target_path)
-{
-    return FileExists(target_path) && CheckFilePermission(target_path);
-}
-
-size_t GetBindIndex(const std::string &file_name)
-{
-    if (file_name.empty())
-        return 0;
-
-    auto first_pos = file_name.find_last_of("_");
-    auto second_pos = file_name.find_last_of('.');
-
-    if (first_pos == std::string::npos || second_pos == std::string::npos)
-        return 0;
-
-    auto temp_string = file_name.substr(first_pos, second_pos - first_pos);
-
-    first_pos = temp_string.find_last_not_of("0123456789");
-
-    temp_string = temp_string.substr(first_pos + 1, temp_string.size());
-
-    return std::stoull(temp_string);
-}
-
 std::string GetMD5Hash(const std::string &target_path)
 {
     if (target_path.empty())
         return "";
 
-    if (!FileExists(target_path))
+    if (!PathExists(target_path))
         return "";
 
     std::string file_contents;
@@ -101,22 +70,6 @@ std::string GetMD5Hash(const std::string &target_path)
     return oss.str();
 }
 
-size_t GetSectionIndex(const std::string &file_name)
-{
-    if (file_name.empty())
-        return 0;
-
-    auto first_pos = file_name.find_first_of("0123456789");
-    auto second_pos = file_name.find_first_of('_');
-
-    if (first_pos == std::string::npos || second_pos == std::string::npos)
-        return 0;
-
-    auto temp_string = file_name.substr(first_pos, second_pos);
-
-    return std::stoull(temp_string);
-}
-
 std::vector<std::string> GetFileList(const std::string &target_path)
 {
     return GetFileList(target_path, "*");
@@ -127,7 +80,7 @@ std::vector<std::string> GetFileList(const std::string &target_path, const std::
 {
     std::vector<std::string> file_list;
 
-    if (!FileExists(target_path))
+    if (!PathExists(target_path))
         return file_list;
 
     try
@@ -162,8 +115,19 @@ bool MakeDirectories(const std::string &target_path)
     return fs::create_directories(target_path);
 }
 
+// wrapper for std::filesystem::exists
+bool PathExists(const std::string &target_path)
+{
+    return fs::exists(target_path);
+}
+
+bool PathExistsAndPermission(const std::string &target_path)
+{
+    return PathExists(target_path) && CheckFilePermission(target_path);
+}
+
 // wrapper for std::filesystem::remove
-bool RemoveFile(const std::string &target_path)
+bool RemovePath(const std::string &target_path)
 {
     return fs::remove(target_path);
 }

@@ -17,14 +17,12 @@ namespace common {
 static constexpr const char DefaultStoragePath[] = "/mnt/black-library/store";
 
 bool CheckFilePermission(const std::string &target_path);
-bool FileExists(const std::string &target_path);
-bool FileExistsAndPermission(const std::string &target_path);
-size_t GetBindIndex(const std::string &file_name);
-size_t GetSectionIndex(const std::string &file_name);
+bool PathExists(const std::string &target_path);
+bool PathExistsAndPermission(const std::string &target_path);
 std::vector<std::string> GetFileList(const std::string &target_path);
 std::vector<std::string> GetFileList(const std::string &target_path, const std::string &regex_string);
 bool MakeDirectories(const std::string &target_path);
-bool RemoveFile(const std::string &target_path);
+bool RemovePath(const std::string &target_path);
 std::string SanitizeFileName(const std::string &file_name);
 std::string SanitizeFilePath(const std::string &file_name);
 
