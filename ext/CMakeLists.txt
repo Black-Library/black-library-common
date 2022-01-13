@@ -9,4 +9,5 @@ set(JSON_BuildTests OFF CACHE INTERNAL "")
 add_subdirectory(json)
 
 # spdlog
+set(SPDLOG_BUILD_SHARED ON CACHE INTERNAL "")
 add_subdirectory(spdlog)
