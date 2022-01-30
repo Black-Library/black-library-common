@@ -10,6 +10,7 @@ add_library(blacklibrarycommon
     SourceInformation.cc
     StringOperations.cc
     TimeOperations.cc
+    VersionOperations.cc
     )
 
 target_include_directories(blacklibrarycommon PUBLIC ${PROJECT_SOURCE_DIR}/include)

@@ -19,6 +19,7 @@ static constexpr const char DefaultStoragePath[] = "/mnt/black-library/store";
 bool CheckFilePermission(const std::string &target_path);
 bool PathExists(const std::string &target_path);
 bool PathExistsAndPermission(const std::string &target_path);
+std::string GetMD5HashFromFile(const std::string &target_path);
 std::vector<std::string> GetFileList(const std::string &target_path);
 std::vector<std::string> GetFileList(const std::string &target_path, const std::string &regex_string);
 bool MakeDirectories(const std::string &target_path);

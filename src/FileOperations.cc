@@ -15,14 +15,12 @@
 #include <unistd.h>
 
 #include <fstream>
-#include <iomanip>
 #include <iostream>
 #include <regex>
 #include <string>
 
 #include <FileOperations.h>
-
-#include <openssl/md5.h>
+#include <VersionOperations.h>
 
 namespace black_library {
 
@@ -39,22 +37,20 @@ bool CheckFilePermission(const std::string &target_path)
     return false;
 }
 
-std::string GetMD5Hash(const std::string &target_path)
+std::string GetMD5HashFromFile(const std::string &target_path)
 {
     if (target_path.empty())
-        return "";
+        return EmptyMD5Version;
 
     if (!PathExists(target_path))
-        return "";
+        return EmptyMD5Version;
 
     std::string file_contents;
-    std::ostringstream oss;
-    unsigned char result[MD5_DIGEST_LENGTH];
 
     std::ifstream input_file(target_path, std::ios::in | std::ios::binary);
 
     if (!input_file)
-        return "";
+        return EmptyMD5Version;
 
     input_file.seekg(0, std::ios::end);
     file_contents.resize(input_file.tellg());
@@ -62,12 +58,7 @@ std::string GetMD5Hash(const std::string &target_path)
     input_file.read(&file_contents[0], file_contents.size());
     input_file.close();
 
-    MD5((unsigned char*)file_contents.c_str(), file_contents.size(), result);
-
-    oss << std::hex << std::setfill('0');
-    for (auto c : result) oss << std::setw(2) << (int)c;
-
-    return oss.str();
+    return GetMD5Hash(file_contents);
 }
 
 std::vector<std::string> GetFileList(const std::string &target_path)
