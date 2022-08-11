@@ -1,4 +1,5 @@
 set(SOURCES_TESTS
+    config_test.cc
     file_test.cc
     log_test.cc
     string_test.cc

@@ -15,6 +15,8 @@ namespace core {
 
 namespace common {
 
+njson LoadConfig(const njson &config);
+
 } // namespace common
 } // namespace core
 } // namespace black_library
