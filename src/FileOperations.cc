@@ -120,7 +120,7 @@ bool PathExistsAndPermission(const std::string &target_path)
 // wrapper for std::filesystem::remove
 bool RemovePath(const std::string &target_path)
 {
-    return fs::remove(target_path);
+    return fs::remove_all(target_path);
 }
 
 std::string SanitizeFileName(const std::string &file_name)

@@ -17,6 +17,22 @@ namespace core {
 
 namespace common {
 
+int CloseAllLoggers()
+{
+    spdlog::drop_all();
+
+    return 0;
+}
+
+int CloseLogger(const std::string &logger_name)
+{
+    auto logger = spdlog::get(logger_name);
+    logger->debug("Closing log: {}", logger_name);
+    spdlog::drop(logger_name);
+
+    return 0;
+}
+
 int InitRotatingLogger(const std::string &logger_name, const std::string &log_path, bool debug_mode)
 {
     auto log_dir = log_path;

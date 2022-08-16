@@ -22,6 +22,8 @@ namespace common {
 static constexpr const char DefaultLogPath[] = "/mnt/black-library/log";
 static const bool DefaultLogLevel = false;
 
+int CloseAllLoggers();
+int CloseLogger(const std::string &logger_name);
 int InitRotatingLogger(const std::string &logger_name, const std::string &log_path, bool debug_mode);
 
 template<typename ... Args>
