@@ -57,6 +57,13 @@ namespace SVF {
     static constexpr char source_url[] = "forums.sufficientvelocity.com";
 } // namespace SBF
 
+namespace WP {
+    static constexpr char name[] = "WordPress";
+    static constexpr char short_name[] = "WP";
+    static constexpr char source_name[] = "wordpress";
+    static constexpr char source_url[] = "wordpress.com";
+} // namespace WP
+
 namespace YT {
     static constexpr char name[] = "YouTube";
     static constexpr char short_name[] = "YT";
@@ -96,6 +103,10 @@ struct SourceInformationMember : std::unary_function<const std::string, bool>
             is_member = true;
         }
         else if (StartsWithString(url, GenerateUrlFromSourceUrl(RR::source_url)))
+        {
+            is_member = true;
+        }
+        else if (StartsWithString(url, GenerateUrlFromSourceUrl(WP::source_url)))
         {
             is_member = true;
         }
